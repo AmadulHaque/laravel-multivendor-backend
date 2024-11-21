@@ -2,28 +2,45 @@
 
 namespace App\Http\Controllers\Shop;
 
-use Illuminate\Http\Request;
-use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use App\Services\CategoryService;
+use App\Services\MasterDataService;
+use Illuminate\Http\Request;
 
 class MasterDataController extends Controller
 {
-    protected $categoryService;
-    public function __construct(CategoryService $categoryService)
+    protected $masterDataService;
+    public function __construct(MasterDataService $masterDataService)
     {
-        $this->categoryService = $categoryService;
+        $this->masterDataService = $masterDataService;
     }
 
-    public function __invoke()
+    public function __invoke():bool  
     {
-        // get categories
-        $categories = $this->categoryService->getCategories();
+        // get master resource 
+        $data = $this->masterDataService->getMasterResource();
 
+        // dd($data);
 
-        dd($categories);
+        // save categories
+        $this->masterDataService->storeCategory( categories: $data['categories']);
 
+        // save brands
+        $this->masterDataService->storeBrand( brands: $data['brands']);
 
+        // save units
+        $this->masterDataService->storeUnit( units: $data['units']);
 
+        // save product types
+        $this->masterDataService->storeProductType( product_types: $data['product_types']);
+        
+        // save attributes
+        $this->masterDataService->storeAttribute( attributes: $data['attributes']);
+
+        // save attribute options
+        $this->masterDataService->storeAttributeOption( attributes_options: $data['attributes_options']);
+        
+        return true;
     }
 
 }
