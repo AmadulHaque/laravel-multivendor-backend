@@ -45,8 +45,8 @@ class CustomerAddress extends FormRequest
 
     public function failedValidation(Validator $validator) : JsonResponse
     {
-        $errors = $validator->errors();
-        throw new HttpResponseException(validationError('Validation Error', $errors));
+        $errors = (array) $validator->errors();
+        throw new HttpResponseException(validationError('Validation Error',  errors: $errors));
     }
 
 }

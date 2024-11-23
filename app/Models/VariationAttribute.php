@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class VariationAttribute extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+
+    public function attributeOption()
+    {
+        return $this->belongsTo(AttributeOption::class);
+    }
 }
+

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductType extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'status'
-    ];
-    
+    protected $guarded = [];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

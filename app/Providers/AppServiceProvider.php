@@ -20,13 +20,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Http::macro('inventory', function () {
-            return Http::withHeaders([
-                'Accept'        => 'application/json',
-                'Authorization' => 'Bearer ' . config('services.inventory.token'),
-                'User-Agent'    => 'Shop',
-                'App-Environment' => app()->environment(),
-            ])->baseUrl(config('services.inventory.inventory_url'));
-        });
     }
 }

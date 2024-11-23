@@ -38,14 +38,6 @@ if (!function_exists('failure')) {
 }
 
 if (!function_exists('validationError')) {
-    /**
-     * Return a validation error JSON response.
-     *
-     * @param string $message
-     * @param array $errors
-     * @param int $statusCode
-     * @return \Illuminate\Http\JsonResponse
-     */
     function validationError($message, $errors = [], $statusCode = 422)
     {
         return response()->json([

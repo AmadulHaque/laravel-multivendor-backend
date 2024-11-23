@@ -25,14 +25,7 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
-    'shop' => [
-        'token'            => env('SHOP_TOKEN'),
-    ],
 
-    'inventory' => [
-        'token'            => env('INVENTORY_TOKEN'),
-        'inventory_url'    => env('INVENTORY_URL'),
-    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),

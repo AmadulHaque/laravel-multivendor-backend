@@ -17,15 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'role',
-        'is_online',
-        'status',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'phone',
+    //     'email',
+    //     'password',
+
+    // ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,13 +46,22 @@ class User extends Authenticatable
     ];
 
 
+    public static $ROLE_SUPER_ADMIN = 1;
+    public static $ROLE_ADMIN = 2;
+    public static $ROLE_USER = 3;
+    public static $ROLE_MERCHANT = 4;
 
 
-    // Relationships
 
-    public function addresses()
+    public static $roles = [
+        1 => 'Super Admin',
+        2 => 'Admin',
+        3 => 'USER',
+        4 => 'MERCHANT',
+    ];
+
+    public function merchant()
     {
-        return $this->hasMany(CustomerAddress::class);
+        return $this->hasOne(Merchant::class);
     }
-
 }
